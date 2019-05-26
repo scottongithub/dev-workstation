@@ -1,6 +1,5 @@
 #!/bin/bash
 
-#Source the config file with a "."
 . ~/P_HOME/CODE/US_DEV_WS/us-dev-ws.conf
 
 if [ ! -d $temp_dir ]; then
@@ -8,7 +7,6 @@ if [ ! -d $temp_dir ]; then
 fi
 
 cd $working_dir
-
 
 for ppa in $ppas; do
   sudo apt-add-repository $ppa | tee -a $logfile
@@ -24,6 +22,7 @@ done
 if install_atom=yes; then
   wget -q https://packagecloud.io/AtomEditor/atom/gpgkey -O- | sudo apt-key add -
   sudo add-apt-repository "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main"
+  sudo apt update
   sudo apt install atom
 fi
 
