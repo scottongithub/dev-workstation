@@ -2,11 +2,11 @@
 
 . ~/P_HOME/CODE/US_DEV_WS/us-dev-ws.conf
 
-if [ ! -d $temp_dir ]; then
-    mkdir $temp_dir;
-fi
-
-cd $working_dir
+# if [ ! -d $temp_dir ]; then
+#     mkdir $temp_dir;
+# fi
+#
+# cd $working_dir
 
 for ppa in $ppas; do
   sudo apt-add-repository $ppa | tee -a $logfile
@@ -16,7 +16,7 @@ sudo apt upgrade | tee -a $logfile
 
 
 for package in $packages; do
-  sudo apt install $package | tee -a $logfile
+  sudo apt-get install -y $package | tee -a $logfile
 done
 
 if install_atom=yes; then
@@ -47,7 +47,7 @@ EOF
 fi
 
 if import_gpg_keys=yes; then
-  cp -r $gpg_key_location "$HOME/.gnupg"
+  cp -r $gpg_key_source "$HOME/.gnupg"
 fi
 
 if create_ssh_key=yes; then
@@ -55,7 +55,7 @@ if create_ssh_key=yes; then
 fi
 
 if import_ssh_keys=yes; then
-  cp -r $ssh_key_location "$HOME/.ssh"
+  cp -r $ssh_key_source "$HOME/.ssh"
 fi
 
 pbuilder-dist $ubuntu_release create
