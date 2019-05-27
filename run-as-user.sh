@@ -30,7 +30,9 @@ echo "export DEBFULLNAME=\"$fullname\"" >> $bashrc
 echo "export DEBEMAIL=\"$email\"" >> $bashrc
 source "$bashrc"
 
-pbuilder-dist $ubuntu_release create
+if [[ $create_pbuilder_dist == "yes" ]]; then
+  pbuilder-dist $ubuntu_release create
+fi
 
 if [[ $import_app_configs == "yes" ]]; then
 # Copy contents of source directory recursively, omitting rdiff's backup data of the archive
