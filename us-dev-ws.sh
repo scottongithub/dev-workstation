@@ -43,6 +43,7 @@ Name-Email: $debemail
 %echo done
 EOF
 # Long format is used to prevent collisions on bigger systems - probably overkill
+  gpg --batch --generate-key "$HOME/gpg_conf"
   gpg --send-keys --keyserver keyserver.ubuntu.com $(gpg --keyid-format long --list-keys $debemail)
 fi
 
