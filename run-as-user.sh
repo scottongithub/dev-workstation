@@ -30,7 +30,7 @@ echo "export DEBFULLNAME=\"$fullname\"" >> $bashrc
 echo "export DEBEMAIL=\"$email\"" >> $bashrc
 source "$bashrc"
 
-if [[ $create_pbuilder_dist == "yes" ]]; then
+if [[ $create_pbuilder_chroot == "yes" ]]; then
   pbuilder-dist $ubuntu_release create
 fi
 
