@@ -8,7 +8,7 @@ if [[ $create_gpg_key == "yes" ]]; then
 Key-Type: default
 Subkey-Type: default
 Name-Real: $fullname
-Name-Comment: Created by us-dev-ws.sh
+Name-Comment: Created by workstation setup script
 Name-Email: $email
 %ask-passphrase
 # Do a commit here, so that we can later print "done" :-)
@@ -44,12 +44,12 @@ if [[ ! -z ${autostart_apps+x} ]]; then
        mkdir "$HOME/.config/autostart";
   fi
   for app in $autostart_apps; do
-    sudo -u $user cat >"$HOME/.config/autostart/$app.desktop" <<EOF
+    cat >"$HOME/.config/autostart/$app.desktop" <<EOF
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
 Name=$app
-Comment=Created by ws-dev-ws.sh
+Comment=Created by workstation setup script
 Exec=$app
 OnlyShowIn=XFCE;
 StartupNotify=false
